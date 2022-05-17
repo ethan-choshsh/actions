@@ -16,10 +16,27 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            ${{ github.actor }} created commit:
+            ## ${{ github.event_name }} created from ${{ github.actor }}
+            
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
+      - name: send telegram message on pull_request
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ## [${{ github.base_ref }} <- ${{ github.head_ref }}] ${{ github.event_name }} created from ${{ github.actor }}
+            
+            PR title: ${{ github.event.pull_request.title }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: ${{ github.event.pull_request.url }}
