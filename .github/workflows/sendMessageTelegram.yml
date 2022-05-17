@@ -38,4 +38,4 @@ jobs:
             
             Repository: ${{ github.repository }}
             
-            See changes: ${{ github.event.pull_request.url }}
+            See changes: ${{ github.event.pull_request.html_url }}
