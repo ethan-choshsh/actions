@@ -32,7 +32,7 @@ jobs:
                 deployStage = 'dev'
                 break;
               case 'release':
-                deployStage = context.payload.target_commitish
+                deployStage = context.payload.release.target_commitish
             }
 
             if (deployStage) {
