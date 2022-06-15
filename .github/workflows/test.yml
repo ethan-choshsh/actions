@@ -2,6 +2,7 @@ on:
   pull_request:
   push:
   release:
+    types: [released]
   workflow_dispatch:
 
 jobs:
@@ -21,24 +22,31 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            let deployStage  = ''
             const eventName = context.eventName
+            let deployStage  = ''
+            let imageTag = ''
 
             switch (eventName) {
               case 'push':
                 deployStage = '${{ github.ref_name }}'
+                imageTag = context.sha
                 break;
               case 'pull_request':
                 deployStage = 'dev'
+                imageTag = context.sha
                 break;
               case 'release':
                 deployStage = context.payload.release.target_commitish
+                imageTag = context.payload.release.tag_name
+                break;
             }
 
-            if (deployStage) {
+            if (deployStage && imageTag) {
               core.exportVariable('DEPLOY_STAGE', deployStage);
+              core.exportVariable('IMAGE_TAG', imageTag);
             }else{
               core.setFailed(`Can't set DEPLOY_STAGE`);
+              core.setFailed(`Can't set IMAGE_TAG`);
             }
 
       - name: test
