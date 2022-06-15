@@ -41,7 +41,7 @@ jobs:
                 imageTag = context.payload.release.tag_name
                 break;
             }
-
+            console.log(1)
             if (deployStage && imageTag) {
               core.exportVariable('DEPLOY_STAGE', deployStage);
               core.exportVariable('IMAGE_TAG', imageTag);
