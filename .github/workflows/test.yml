@@ -26,7 +26,7 @@ jobs:
 
             switch (eventName) {
               case 'push':
-                stage = ${{ github.ref_name }}
+                stage = '${{ github.ref_name }}'
                 break;
               case 'pull_request':
                 stage = dev
