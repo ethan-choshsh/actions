@@ -21,23 +21,25 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            let stage  = ''
+            let deployStage  = ''
             const eventName = context.eventName
 
             switch (eventName) {
               case 'push':
-                stage = '${{ github.ref_name }}'
+                deployStage = '${{ github.ref_name }}'
                 break;
               case 'pull_request':
-                stage = dev
+                deployStage = 'dev'
                 break;
+              case 'release':
+                deployStage = context.payload.target_commitish
             }
 
             if (stage){
-              core.exportVariable('DEPLOY_ENV', stage);
+              core.exportVariable('DEPLOY_STAGE', deployStage);
             }else{
-              core.setFailed(`Can't set DEPLOY_ENV`);
+              core.setFailed(`Can't set DEPLOY_STAGE`);
             }
 
       - name: test
-        run: echo ${{ env.DEPLOY_ENV }}
+        run: echo ${{ env.DEPLOY_STAGE }}
