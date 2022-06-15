@@ -32,8 +32,8 @@ jobs:
                 imageTag = context.sha
                 break;
               case 'pull_request':
-                const headRef = context.payload.pull_request.head.ref.toString()
-                deployStage = headRef.startWith('seo') || headRef.startWith('ci') ? 'dev' : ''
+                const headRef = context.payload.pull_request.head.ref
+                deployStage = headRef.startsWith('seo') || headRef.startsWith('ci') ? 'dev' : ''
                 imageTag = context.sha
                 break;
               case 'release':
