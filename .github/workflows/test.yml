@@ -35,7 +35,7 @@ jobs:
                 deployStage = context.payload.target_commitish
             }
 
-            if (stage){
+            if (deployStage) {
               core.exportVariable('DEPLOY_STAGE', deployStage);
             }else{
               core.setFailed(`Can't set DEPLOY_STAGE`);
