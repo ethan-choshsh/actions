@@ -12,9 +12,32 @@ jobs:
 
       - name: Check Env
         uses: actions/github-script@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           script: |
             console.log(`context: ${JSON.stringify(context, null, 4)}`);
             console.log(`core: ${JSON.stringify(core, null, 4)}`);
+
+      - name: Set Env
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const stage  = ''
+            const eventName = context.eventName
+
+            switch (eventName) {
+              case 'push':
+                stage = ${{ github.ref_name }}
+                break;
+              case 'pull_request':
+                stage = dev
+                break;
+            }
+
+            if (stage){
+              core.exportVariable('DEPLOY_ENV', stage);
+            }else{
+              core.setFailed(`Can't set DEPLOY_ENV`);
+            }
+
+      - name: test
+        run: echo ${{ env.DEPLOY_ENV }}
