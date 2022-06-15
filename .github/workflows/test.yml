@@ -33,7 +33,7 @@ jobs:
                 break;
               case 'pull_request':
                 const headRef = context.payload.pull_request.head.ref
-                deployStage = headRef.startWith('seo') || headRef.startWith('ci') ? 'dev' : ''
+                deployStage = headRef.startsWith('seo') || headRef.startsWith('ci') ? 'dev' : ''
                 imageTag = context.sha
                 break;
               case 'release':
@@ -41,7 +41,7 @@ jobs:
                 imageTag = context.payload.release.tag_name
                 break;
             }
-
+            console.log(1)
             if (deployStage && imageTag) {
               core.exportVariable('DEPLOY_STAGE', deployStage);
               core.exportVariable('IMAGE_TAG', imageTag);
