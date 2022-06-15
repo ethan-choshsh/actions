@@ -1,0 +1,20 @@
+on:
+  pull_request:
+  push:
+  release:
+  workflow_dispatch:
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Env
+        uses: actions/github-script@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          script: |
+            console.log(`context: ${JSON.stringify(context, null, 4)}`);
+            console.log(`core: ${JSON.stringify(core, null, 4)}`);
