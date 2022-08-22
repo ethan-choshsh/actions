@@ -1,0 +1,11 @@
+name: Tag Push
+
+on:
+  push:
+    tags:
+      - 'v*.*.*-qa*'
+jobs:
+  tag_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
