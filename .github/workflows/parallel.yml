@@ -19,7 +19,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: parallel_test
-          path: test.txt
       - run: ls
       - run: cat test.txt
   test2:
@@ -29,6 +28,5 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: parallel_test
-          path: test.txt
       - run: ls
       - run: cat test.txt
