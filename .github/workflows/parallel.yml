@@ -26,7 +26,7 @@ jobs:
         with:
           name: parallel_test
           path: choshsh
-      - run: ls choshsh
+      - run: ls choshsh/**
       - run: tree choshsh
   test2:
     needs: [ parallel ]
@@ -36,5 +36,5 @@ jobs:
         with:
           name: parallel_test
           path: choshsh
-      - run: ls choshsh
+      - run: ls choshsh/**
       - run: tree choshsh
