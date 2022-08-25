@@ -8,15 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "action test" >test.txt
+      - run: ls
   test1:
     needs: [ parallel ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: ls
       - run: cat test.txt
   test2:
     needs: [ parallel ]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: ls
       - run: cat test.txt
