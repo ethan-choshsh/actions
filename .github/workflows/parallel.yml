@@ -1,0 +1,22 @@
+name: parallel
+on:
+  push:
+    branches:
+jobs:
+  parallel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "action test" >test.txt
+  test1:
+    needs: [ parallel ]
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls
+      - run: cat test.txt
+  test2:
+    needs: [ parallel ]
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls
+      - run: cat test.txt
