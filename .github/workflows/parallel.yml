@@ -24,8 +24,8 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: parallel_test
-      - run: ls
-      - run: cat test.txt
+          path: choshsh
+      - run: ls choshsh
   test2:
     needs: [ parallel ]
     runs-on: ubuntu-latest
@@ -33,5 +33,5 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: parallel_test
-      - run: ls
-      - run: cat test.txt
+          path: choshsh
+      - run: ls choshsh
