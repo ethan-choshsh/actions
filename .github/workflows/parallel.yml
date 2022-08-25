@@ -8,18 +8,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "action test" >test.txt
-      - run: ls
+      - uses: actions/upload-artifact@v3
+        with:
+          name: parallel_test
+          path: test.txt
   test1:
     needs: [ parallel ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: parallel_test
+          path: test.txt
       - run: ls
       - run: cat test.txt
   test2:
     needs: [ parallel ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: parallel_test
+          path: test.txt
       - run: ls
       - run: cat test.txt
