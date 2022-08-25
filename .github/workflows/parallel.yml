@@ -21,12 +21,17 @@ jobs:
   test1:
     needs: [ parallel ]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        my_name: [ethan, choshsh]
     steps:
       - uses: actions/download-artifact@v3
         with:
           name: parallel_test
           path: choshsh
       - run: tree choshsh
+      - run: echo ${{ matrix.my_name }}
+
   test2:
     needs: [ parallel ]
     runs-on: ubuntu-latest
