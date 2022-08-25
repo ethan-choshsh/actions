@@ -30,7 +30,7 @@ jobs:
           name: parallel_test
           path: choshsh
       - run: tree choshsh
-      - run: echo ${{ matrix.my_name }}
+      - run: echo '${{ matrix.my_name }}${{ matrix.my_name == 'ethan' && '1234' || '' }}'
 
   test2:
     needs: [ parallel ]
