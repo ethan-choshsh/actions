@@ -8,10 +8,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "action test12783612798637821963782167389126" >test.txt
+      - run: echo "action1" >action1.txt
+      - run: echo "action2" >action2.txt
       - uses: actions/upload-artifact@v3
         with:
           name: parallel_test
-          path: test.txt
+          path: |
+            test.txt
+            action1.txt
+            action2.txt
   test1:
     needs: [ parallel ]
     runs-on: ubuntu-latest
