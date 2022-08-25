@@ -17,7 +17,7 @@ jobs:
             test.txt
             action1.txt
             action2.txt
-            src
+            src/
   test1:
     needs: [ parallel ]
     runs-on: ubuntu-latest
