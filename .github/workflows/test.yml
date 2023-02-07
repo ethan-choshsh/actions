@@ -12,6 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: print event
+        env:
+          TEST_PRINT: ${{ toJson(github.event) }}
+        run: echo "$TEST_PRINT"
+        
+      - name: print context
+        env:
+          TEST_PRINT: ${{ toJson(github.context) }}
+        run: echo "$TEST_PRINT"
+      
       - name: Check Env
         uses: actions/github-script@v6
         with:
