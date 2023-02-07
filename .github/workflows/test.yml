@@ -16,12 +16,12 @@ jobs:
         env:
           TEST_PRINT: ${{ toJson(github.event) }}
         run: echo "$TEST_PRINT"
-        
+
       - name: print context
         env:
-          TEST_PRINT: ${{ toJson(github.context) }}
+          TEST_PRINT: ${{ toJson(github) }}
         run: echo "$TEST_PRINT"
-      
+
       - name: Check Env
         uses: actions/github-script@v6
         with:
