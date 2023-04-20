@@ -1,0 +1,21 @@
+name: Call test
+
+on:
+  workflow_call:
+    inputs:
+      test:
+        description: 'Test'
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: ls
+        run: ls -la
+
+      - name: Test
+        run: echo ${{ inputs.test }}
