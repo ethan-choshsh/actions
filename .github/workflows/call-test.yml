@@ -4,10 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  call_test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call test
-        uses: ethan-choshsh/actions/.github/workflows/call.yml@main
-        with:
-          test: 'choshsh'
+  call-workflow:
+    uses: ethan-choshsh/actions/.github/workflows/call.yml@main
+    with:
+      test: 'choshsh'
