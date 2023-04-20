@@ -10,6 +10,6 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Call test
-        uses: ./.github/workflows/call.yml
+        uses: ${{ github.repository }}/.github/workflows/call.yml@main
         with:
           test: 'choshsh'
