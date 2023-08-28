@@ -1,4 +1,5 @@
 const postmanToOpenApi = require('postman-to-openapi');
+const exec = require('@actions/exec');
 
 const { POSTMAN_COLLECTION, OUTPUT_FILE } = process.env;
 
