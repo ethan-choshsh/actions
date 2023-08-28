@@ -8,7 +8,7 @@ module.exports = () => {
     process.exit(1);
   }
 
-  postmanToOpenApi(postmanCollection, outputFile, { defaultTag: 'General' })
+  postmanToOpenApi(POSTMAN_COLLECTION, OUTPUT_FILE, { defaultTag: 'General' })
     .then((result) => {
       console.error('done');
     })
