@@ -1,4 +1,4 @@
-import postmanToOpenApi from 'postman-to-openapi';
+const postmanToOpenApi = require('postman-to-openapi');
 
 const { POSTMAN_COLLECTION, OUTPUT_FILE } = process.env;
 
