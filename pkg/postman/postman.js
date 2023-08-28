@@ -2,7 +2,7 @@ const postmanToOpenApi = require('postman-to-openapi');
 
 const { POSTMAN_COLLECTION, OUTPUT_FILE } = process.env;
 
-export default postmanToOpenApi = () => {
+module.exports = () => {
   if (!isValidate()) {
     console.error('Please check your input (OS env)');
     process.exit(1);

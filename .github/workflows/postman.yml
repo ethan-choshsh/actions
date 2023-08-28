@@ -26,7 +26,7 @@ jobs:
           OUTPUT_FILE: ./collection.yml
         with:
           script: |
-            const { default: postmanToOpenApi } = import('${{ github.workspace }}/pkg/postman/postman.js');
+            const postmanToOpenApi = require('./pkg/postman/postman.js');
             postmanToOpenApi()
 
       - name: Validate openapi
