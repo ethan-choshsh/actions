@@ -26,7 +26,7 @@ jobs:
           OUTPUT_FILE: ./collection.yml
         with:
           script: |
-            const { postmanToOpenApi } = import('pkg/postman');
+            const { postmanToOpenApi } = import('./pkg/postman');
             postmanToOpenApi()
 
       - name: Validate openapi
