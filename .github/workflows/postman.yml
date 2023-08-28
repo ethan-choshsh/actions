@@ -27,7 +27,7 @@ jobs:
         with:
           script: |
             const postmanToOpenApi = require('./pkg/postman/postman.js');
-            postmanToOpenApi()
+            await postmanToOpenApi()
 
       - name: Validate openapi
         run: cat ./collection.yml
