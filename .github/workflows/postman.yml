@@ -21,16 +21,13 @@ jobs:
 
       - name: Convert postman collection to openapi
         uses: actions/github-script@v6
+        env:
+          POSTMAN_COLLECTION: ./POLARISHARE_APIS.postman_collection.json
+          OUTPUT_FILE: ./collection.yml
         with:
           script: |
-            const postmanToOpenApi = require("postman-to-openapi");           
-
-            const postmanCollection = "./POLARISHARE_APIS.postman_collection.json";
-            const outputFile = "./collection.yml";
-
-            postmanToOpenApi(postmanCollection, outputFile, { defaultTag: "General" })
-              .then((result) => { console.error('done') })
-              .catch((err) => { console.error(err) });
+            const { postmanToOpenApi } = import('pkg/postman');
+            postmanToOpenApi()
 
       - name: Validate openapi
         run: cat ./collection.yml
